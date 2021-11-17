@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body { padding-top: 50px;}
+    </style>
+</head>
+<body>
+    <h1>Sample screen</h1>
+    <input id="dulieunhap" type="text" value="" >
+    <input type="button" value="Add" onclick="xulynhap()">
+    <input type="button" value="Display" onclick="xulyxuat()">
+  
+    <div id="kq">
+    </div>
+        <script>
+            let array = Array();
+            let x = 0;
+            function xulynhap(){
+               array [x]= document.getElementById('dulieunhap').value;
+               alert('phan tu' + array [x] + 'duoc them vao vi tri' + x );
+               x++;
+               document.getElementById('dulieunhap').value = '';
+            }
+            function xulyxuat(){
+                let e = '</hr>';
+                for (i=0; i < array.length; i++ ){
+                    e+= 'phan tu' + i + ' = ' + array[i] +  '<br/>';
+                }
+                document.getElementById("kq").innerHTML = e;
+            }
+        </script>
+</body>
+</html>
