@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Các hệ điều hành</title>
+    <style>
+        .image {
+            margin: 100px;
+        }
+
+        .images img {
+            width: 100%;
+            height: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            background-color: rgb(250, 104, 0);
+            text-transform: uppercase;
+        }
+
+        img {
+            width: 100%;
+            height: 100px;
+        }
+        table {
+            background-color: #f13939;
+            color: #fbff00;
+            font-size: 25px;
+        }
+
+        P {
+            color: rgb(7, 0, 0);
+        }
+    </style>
+</head>
+
+<div class="images">
+    <img id="img" src="images/img23_n.jpg" alt="">
+</div>
+
+<script>
+    var index = 1;
+    changeImage = function () {
+        var imgs = ["images/dienthoai.png", "images/dienthoai2.png", "images/img21-2.jpg", "images/dienthoai3.jmg.jpg"];
+        document.getElementById('img').src = imgs[index];
+        index++;
+        if (index == 4) {
+            index = 0;
+        }
+    }
+    setInterval(changeImage, 3000);
+</script>
+
+<body>
+
+
+    <h2>Hiển thị tất cả sản phẩm SenDo</h2>
+
+    <table style="width: 100%;" border="5px">
+        <thead>
+            <tr>
+                <th style="float: left" colspan="2">GIỎ HÀNG </th>
+
+                <th>
+                    <input type="text" name="" id="brand" value="">
+                    <input onclick="brandPush()" placeholder="New Product" type="button" value="THÊM SẢN PHẨM"><br>
+                </th>
+
+                <form
+                    action="https://www.sendo.vn/?utm_source=google&utm_medium=affiliate&utm_campaign=333629566-65896812448&gclid=Cj0KCQiAtJeNBhCVARIsANJUJ2Goig8kMfgEqTZ8pz3VGh41i-Y2OkDM4Izq5mbJDlIcIj4r0AgAKK8aAjAqEALw_wcB=search?keyword">
+                    <input type="submit" value="TÌM KIẾM THÊM SẢN PHẨM CẦN MUA" /><br>
+                    <input type="text" name="q" />
+                </form>
+            </tr>
+        </thead>
+
+        <thead>
+            <tr>
+                <th>TÊN SẢN PHẨM</th>
+            </tr>
+        </thead>
+
+        <tbody id="kq"></tbody>
+    </table>
+
+    <script>
+        let myInput = ['Điện thoại Samsung Galaxy A50s  <P>[4.350.000 đ]</P>', 'Điện thoại Samsung Galaxy A20s 64GB <p>[3.390.000 đ]</p>', 'Điện thoại iPhone 11 Pro Max 64GB <p>[17.590.000 đ]</p>', 'Điện thoại iPhone 7 Plus 32GB <p>[5.690.000 đ]</p>', 'Điện thoại OPPO Reno2 F <p>[4.690.000 đ]</p>  ', 'Điện thoại Xiaomi Redmi Note 8 (4GB/128GB) <p>[4.200.000 đ]</p>', 'Điện thoại Xiaomi Redmi 8 (3GB/32GB) <p>[4.690.000 đ]</p>','Điện thoại Iphone 13-280GB <p>[32.000.000]</p>'];
+        showBrand(myInput);
+        function brandPush() {
+            //lấy giá trị nhập vào từ ô input có id="brand"
+            let brand = document.getElementById("brand").value;//window
+            //thêm một phần tử vào mảng của hdh
+            myInput.push(brand);
+            //gọi hàm hiển thị
+            showBrand(myInput);
+        }
+        function showBrand(data) {
+            //data: ['Sony', 'Samsung Galaxy', 'Nokia 6', 'Xiaomi Redmi Note 4']
+            let tableHtml = "";
+            // duyệt mảng
+            for (let i = 0; i < data.length; i++) {
+                const element = data[i];
+                tableHtml += "<tr>";
+                tableHtml += "<td>" + element + "</td>";
+                tableHtml += "<td>";
+                tableHtml += ' <input onclick="editValue(' + i + ')" type="button" value="Chỉnh sửa">';
+                tableHtml += "</td>";
+                tableHtml += "<td>";
+                tableHtml += ' <input id="heart" onclick=xem_san_pham()(' + i + ');  type="submit" value="Tìm hiểu thêm">';
+                tableHtml += "</td>";
+                tableHtml += "</tr>";
+            }
+            if (editValue[index] == null) {
+                function del(index) {
+                    myInput.splice(index, 1);
+                    showBrand(myInput);
+                }
+            }
+            console.log(tableHtml);
+            //tìm phần tử có id="kq" và đưa nội dung html vào
+            document.getElementById("kq").innerHTML = tableHtml;
+        }
+        function editValue(index) {
+            myInput[index] = prompt('Nhập giá trị vào đây: ');
+            showBrand(myInput);
+        }
+        function xem_san_pham() {
+            document.write(myInput[index]);
+        }
+    </script>
+
+</body>
+
+</html>
